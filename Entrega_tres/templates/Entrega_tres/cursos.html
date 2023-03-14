@@ -1,0 +1,39 @@
+{% extends "Entrega_tres/base.html" %}
+{% load static %}
+
+{% block main%}
+<body style="
+background-color:hsl(235, 62%, 90%);
+"
+>
+
+{% if form %}
+<br>
+<h2>  <U>Administracion de cursos</U></h2>
+<form action="{% url 'agregar-cursos' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+</form>
+
+{% else %}
+
+
+{% endif %}
+<hr>
+<h3> <u>Busqueda de Cursos</u> </h3>
+<br>
+<form action="{% url 'buscar-curso' %}" class="d-flex" >
+  <input class="form" name="criterio" type="search" placeholder="Buscar por curso" aria-label="Search" >
+  <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+<br><hr>
+<ul>
+  
+  <h3><U>Lista de Cursos</U>  </h3>
+    {% for curso in cursos %}
+    <li> ID: {{curso.id}}: {{ curso.nombre_curso }}  -> <I>Profesor Asignado:</I> {{ curso.Profesor_asignado}} ({{ curso.duracion_curso }}) </li>
+    {% endfor %}
+</ul>
+
+  {% endblock %}

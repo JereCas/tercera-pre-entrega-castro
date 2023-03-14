@@ -1,0 +1,46 @@
+{% extends "Entrega_tres/base.html" %}
+{% load static %}
+
+{% block main%}
+<body style="
+background-color:hsl(211, 50%, 79%);
+"
+>
+
+{% if form %}
+<br>
+<h2> <U> Administracion de perfiles de Alumnos </U></h2>
+<form action="{% url 'agregar-alumnos' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+</form>
+
+{% else %}
+
+
+{% endif %}
+<hr>
+<h3> <U>Busqueda de Alumnos</U></h3>
+<br>
+<form action="{% url 'buscar-alumno' %}" class="d-flex">
+  <input class="form" name="criterio" type="search" placeholder="Buscar por apellido" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+<br><hr>
+<ul>
+  <h3><U> Lista de Alumnos </U></h3>
+    {% for alumno in alumnos %}
+    <li> ID: {{alumno.id}}: {{ alumno.apellido_alumno }}, {{ alumno.nombre_alumno }} ({{ alumno.direccion_alumno }}) </li>
+    {% endfor %}
+</ul>
+
+
+  {% endblock %}
+
+  label {
+    /* Tamaño y alineación uniforme */
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+  }

@@ -1,0 +1,40 @@
+{% extends "Entrega_tres/base.html" %}
+{% load static %}
+
+{% block main%}
+<body style="
+background-color:hsl(163, 61%, 89%);
+"
+>
+
+{% if form %}
+<br>
+<h2> <U> Administracion de perfiles de Profesores </U></h2>
+<form action="{% url 'agregar-profesores' %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Agregar">
+</form>
+
+{% else %}
+
+
+{% endif %}
+<hr>
+<h3> <U>Busqueda de Profesores</U> </h3>
+<br>
+<form action="{% url 'buscar-profesor' %}" class="d-flex">
+  <input class="form" name="criterio" type="search" placeholder="Buscar por apellido" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Buscar</button>
+</form>
+<br><hr>
+<ul>
+  <h3> <u>Lista de Profesores</u> </h3>
+    {% for profesor in profesores %}
+    <li> ID: {{profesor.id}}: {{ profesor.apellido_profesor }}, {{ profesor.nombre_profesor }} ({{ profesor.direccion_profesor }}) </li>
+    {% endfor %}
+</ul>
+
+
+
+  {% endblock %}

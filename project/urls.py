@@ -15,7 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Entrega_tres.views import index, alumnos, profesores, cursos ,agregar_alumno, buscar_alumno, agregar_profesor, buscar_profesor, agregar_curso, buscar_curso 
 
 urlpatterns = [
+    path('', index, name="index"),
     path('admin/', admin.site.urls),
+    path('alumnos/', alumnos, name="pag_alumnos"),
+    path('profesores/', profesores, name="pag_profesores"),
+    path('cursos/', cursos, name="pag_cursos"),
+    path('alumnos/agregar', agregar_alumno, name="agregar-alumnos"),
+    path('alumnos/buscar', buscar_alumno, name="buscar-alumno"),
+    path('profesores/agregar', agregar_profesor, name="agregar-profesores"),
+    path('profesores/buscar', buscar_profesor, name="buscar-profesor"),
+    path('cursos/agregar', agregar_curso, name="agregar-cursos"),
+    path('cursos/buscar', buscar_curso, name="buscar-curso"),
 ]
